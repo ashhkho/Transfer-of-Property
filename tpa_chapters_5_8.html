@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transfer of Property Act 1882 — Chapters V–VIII</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #181c26;
+    --surface2: #1e2333;
+    --surface3: #242940;
+    --border: #2e3450;
+    --border2: #3a4165;
+    --ink: #e8e4dc;
+    --ink2: #b0aaa0;
+    --ink3: #706a62;
+    --accent: #c9854a;
+    --accent2: #e09a60;
+    --accent-bg: rgba(201,133,74,0.08);
+    --ch5: #4a9eca;
+    --ch5bg: rgba(74,158,202,0.12);
+    --ch6: #7ec470;
+    --ch6bg: rgba(126,196,112,0.12);
+    --ch7: #ca7aab;
+    --ch7bg: rgba(202,122,171,0.12);
+    --ch8: #e8c94a;
+    --ch8bg: rgba(232,201,74,0.12);
+    --tag-key: #4a9eca;
+    --tag-key-bg: rgba(74,158,202,0.15);
+    --tag-void: #e8c94a;
+    --tag-void-bg: rgba(232,201,74,0.12);
+    --tag-doctrine: #7ec470;
+    --tag-doctrine-bg: rgba(126,196,112,0.12);
+    --tag-cannot: #e07a7a;
+    --tag-cannot-bg: rgba(224,122,122,0.12);
+    --tag-def: #ca7aab;
+    --tag-def-bg: rgba(202,122,171,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 48px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--ch5), var(--ch6), var(--ch7), var(--ch8));
+  }
+  header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  header .subtitle {
+    font-size: 13px;
+    color: var(--ink3);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+  header .meta {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  header .meta span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    color: var(--ink3);
+  }
+
+  /* CONTROLS */
+  .controls {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 48px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .controls label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .search-box {
+    padding: 6px 14px;
+    border: 1px solid var(--border2);
+    border-radius: 3px;
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    background: var(--surface2);
+    color: var(--ink);
+    width: 200px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-box::placeholder { color: var(--ink3); }
+  .search-box:focus { border-color: var(--accent); }
+  .filter-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 4px 12px;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    background: transparent;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    color: var(--ink3);
+    letter-spacing: 0.05em;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active { background: var(--accent); color: #0f1117; border-color: var(--accent); font-weight: 500; }
+  .count-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink3);
+    margin-left: auto;
+  }
+
+  /* CHAPTER GROUPS */
+  .chapter-group { margin: 0; }
+  .chapter-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 48px;
+    border-top: 2px solid;
+    cursor: pointer;
+    user-select: none;
+    background: var(--surface2);
+    position: sticky; top: 53px; z-index: 90;
+    transition: filter 0.1s;
+  }
+  .chapter-header:hover { filter: brightness(1.1); }
+  .ch-roman {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+  .ch-title { font-size: 16px; font-weight: 600; }
+  .ch-sections {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    opacity: 0.55;
+    margin-left: auto;
+  }
+  .ch-toggle { font-size: 11px; opacity: 0.4; }
+
+  .ch5 .chapter-header  { border-color: var(--ch5);  color: var(--ch5);  }
+  .ch6 .chapter-header  { border-color: var(--ch6);  color: var(--ch6);  }
+  .ch7 .chapter-header  { border-color: var(--ch7);  color: var(--ch7);  }
+  .ch8 .chapter-header  { border-color: var(--ch8);  color: var(--ch8);  }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead tr {
+    background: var(--surface3);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink3);
+  }
+  thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: var(--accent-bg); }
+  tbody tr.hidden { display: none; }
+  td { padding: 13px 14px; vertical-align: top; }
+
+  /* Column widths */
+  .col-sec   { width: 88px;  white-space: nowrap; }
+  .col-name  { width: 165px; }
+  .col-concept { width: 130px; }
+  .col-ingr  { width: 205px; }
+  .col-expl  { width: 225px; }
+  .col-illus { width: 205px; }
+  .col-read  { width: 115px; }
+
+  /* Section badge */
+  .sec-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .ch5 .sec-badge { background: var(--ch5bg);  color: var(--ch5);  }
+  .ch6 .sec-badge { background: var(--ch6bg);  color: var(--ch6);  }
+  .ch7 .sec-badge { background: var(--ch7bg);  color: var(--ch7);  }
+  .ch8 .sec-badge { background: var(--ch8bg);  color: var(--ch8);  }
+
+  /* Section name */
+  .sec-name { font-weight: 600; font-size: 13px; line-height: 1.4; color: var(--ink); }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+  .tag-key     { background: var(--tag-key-bg);     color: var(--tag-key);     }
+  .tag-void    { background: var(--tag-void-bg);    color: var(--tag-void);    }
+  .tag-doctrine{ background: var(--tag-doctrine-bg);color: var(--tag-doctrine);}
+  .tag-cannot  { background: var(--tag-cannot-bg);  color: var(--tag-cannot);  }
+  .tag-def     { background: var(--tag-def-bg);     color: var(--tag-def);     }
+
+  /* Ingredient list */
+  .ingr-list { padding-left: 0; list-style: none; }
+  .ingr-list li {
+    padding: 1.5px 0 1.5px 14px;
+    position: relative;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink2);
+  }
+  .ingr-list li::before {
+    content: '›';
+    position: absolute; left: 2px;
+    color: var(--ink3);
+    font-size: 13px;
+    top: 1px;
+  }
+  .ingr-list li strong { color: var(--ink); }
+
+  /* Concept cell */
+  .concept-text {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.5;
+  }
+
+  /* Explanation */
+  .expl { font-size: 13px; color: var(--ink2); line-height: 1.55; }
+  .expl strong { color: var(--ink); font-weight: 600; }
+
+  /* Illustration */
+  .illus {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink3);
+    background: var(--surface3);
+    border-left: 2px solid var(--border2);
+    padding: 8px 10px;
+    border-radius: 0 3px 3px 0;
+    line-height: 1.55;
+  }
+  .illus strong {
+    font-style: normal;
+    font-size: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ink3);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .illus em { color: var(--ink2); font-style: italic; }
+
+  /* Read with */
+  .read-with {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    line-height: 2;
+    color: var(--ink3);
+  }
+  .read-with .rw-link {
+    display: block;
+    color: var(--accent2);
+    border-bottom: 1px dotted rgba(201,133,74,0.3);
+    padding-bottom: 1px;
+    margin-bottom: 2px;
+  }
+
+  /* Repealed notice */
+  .repealed {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink3);
+    font-style: italic;
+    padding: 6px 10px;
+    background: var(--surface3);
+    border-radius: 3px;
+    border-left: 2px solid var(--border2);
+  }
+
+  /* No results */
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--ink3);
+    font-style: italic;
+    font-size: 16px;
+    display: none;
+  }
+
+  /* Footer */
+  footer {
+    padding: 24px 48px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--ink3);
+    font-style: italic;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Chapter divider label */
+  .part-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    padding: 6px 14px;
+    background: var(--surface3);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .part-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Transfer of Property Act, 1882</h1>
+  <p class="subtitle">Section-wise Reference Table · Chapters V through VIII (Leases, Exchanges, Gifts, Actionable Claims)</p>
+  <div class="meta">
+    <span>ACT NO. 4 OF 1882</span>
+    <span>CHAPTERS V–VIII</span>
+    <span>SS. 105–137</span>
+    <span>ALL SECTIONS COVERED</span>
+  </div>
+</header>
+
+<div class="controls">
+  <label>Search</label>
+  <input class="search-box" type="text" id="searchInput" placeholder="section, keyword…" oninput="filterTable()">
+  <div class="filter-btns">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('ch5',this)">Ch. V · Leases</button>
+    <button class="filter-btn" onclick="setFilter('ch6',this)">Ch. VI · Exchanges</button>
+    <button class="filter-btn" onclick="setFilter('ch7',this)">Ch. VII · Gifts</button>
+    <button class="filter-btn" onclick="setFilter('ch8',this)">Ch. VIII · Actionable Claims</button>
+    <button class="filter-btn" onclick="setFilter('key',this)">⭐ Key</button>
+    <button class="filter-btn" onclick="setFilter('void',this)">Void rules</button>
+    <button class="filter-btn" onclick="setFilter('doctrine',this)">Doctrines</button>
+  </div>
+  <span class="count-label" id="countLabel"></span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ CHAPTER V — LEASES -->
+<div class="chapter-group ch5" id="grp-ch5">
+  <div class="chapter-header" onclick="toggleChapter('ch5')">
+    <span class="ch-roman">CHAPTER V</span>
+    <span class="ch-title">Of Leases of Immoveable Property</span>
+    <span class="ch-sections">Sections 105–117</span>
+    <span class="ch-toggle" id="tog-ch5">▼</span>
+  </div>
+  <div class="table-wrap" id="body-ch5">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-sec">Section</th>
+          <th class="col-name">Section Name (Bare Act)</th>
+          <th class="col-concept">Concept</th>
+          <th class="col-ingr">Ingredients / Requirements</th>
+          <th class="col-expl">Simple Explanation</th>
+          <th class="col-illus">Illustration</th>
+          <th class="col-read">Read With</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr data-ch="ch5" data-tags="key def">
+          <td class="col-sec"><span class="sec-badge">S. 105</span></td>
+          <td class="col-name">
+            <div class="sec-name">Lease defined. Lessor, lessee, premium and rent defined.</div>
+            <div><span class="tag tag-def">DEFINITION</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Lease — transfer of right to enjoy property</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Lease</strong> = transfer of a right to enjoy immoveable property</li>
+              <li>For a certain time, express or implied, or <strong>in perpetuity</strong></li>
+              <li>In consideration of a price paid/promised (premium) or periodic payment (rent) — in money, crop-share, service, or any thing of value</li>
+              <li>Transferee accepts the transfer on such terms</li>
+              <li><strong>Lessor</strong> = transferor; <strong>Lessee</strong> = transferee</li>
+              <li><strong>Premium</strong> = lump-sum price; <strong>Rent</strong> = periodic payment</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">A lease transfers only the <strong>right to enjoy</strong> — not ownership. Unlike a sale (transfers ownership permanently), a lease is for a period. At the end, the property returns. A lease can be for any period — even perpetuity. Both lessor and lessee must agree to the terms.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A lets his shop to B for 3 years at Rs.10,000/month rent. This is a lease — A remains owner; B gets the right to use the shop for 3 years and pays monthly rent. Compare: if A had sold the shop, ownership would permanently transfer.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 54 — sale (compare: ownership transfers)</span>
+              <span class="rw-link">S. 58 — mortgage (compare: interest transferred as security)</span>
+              <span class="rw-link">S. 107 — how leases are made</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 106</span></td>
+          <td class="col-name">
+            <div class="sec-name">Duration of certain leases in absence of written contract or local usage.</div>
+            <div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Implied duration and notice period</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Absence of contract or local law or usage to the contrary:</li>
+              <li><strong>Agricultural / manufacturing purpose</strong> → lease from <strong>year to year</strong>; terminable by <strong>6 months' notice</strong></li>
+              <li><strong>Any other purpose</strong> → lease from <strong>month to month</strong>; terminable by <strong>15 days' notice</strong></li>
+              <li>Notice period begins from <strong>date of receipt</strong> of notice</li>
+              <li>Notice must be in <strong>writing, signed</strong> by giver or their agent</li>
+              <li>Must be sent by post OR delivered personally/to family/servant at residence OR affixed to conspicuous part of property</li>
+              <li>Notice not invalid if the period stated is shorter than required, so long as suit is filed after actual expiry</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">When parties don't specify how long the lease runs or how to end it, the law fills in the gaps based on the purpose of the lease. A farm lease needs 6 months' notice (farmers need time to deal with crops). A shop or house lease only needs 15 days. Notice must be in writing — oral notice is insufficient.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A lets a shop to B with no written agreement about duration. B wants to end the lease. B must give A 15 days' written notice. A wants to end it — same 15 days' written notice to B. The notice period runs from when the other side actually <em>receives</em> it, not when it was sent.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 111(h) — lease determined by notice to quit</span>
+              <span class="rw-link">S. 116 — effect of holding over</span>
+              <span class="rw-link">S. 117 — agricultural lease exception</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 107</span></td>
+          <td class="col-name">
+            <div class="sec-name">Leases how made.</div>
+            <div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Mode of creating a lease — writing vs oral</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Year to year, exceeding one year, or reserving yearly rent</strong> → only by <strong>registered instrument</strong></li>
+              <li>Registered lease → must be executed by <strong>both lessor and lessee</strong></li>
+              <li><strong>All other leases</strong> → by registered instrument OR oral agreement accompanied by <strong>delivery of possession</strong></li>
+              <li>State Government may direct that even shorter leases may be made by unregistered instrument or oral agreement without delivery</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Long leases need formal registration — both parties sign. Short leases (under a year, no yearly rent) can be made orally if possession is handed over. The written, registered form provides certainty and protects both sides; the oral + possession route works for everyday short tenancies.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration (long lease)</strong>
+              A lets his farm to B for 3 years. The lease must be in a registered instrument signed by both A and B.<br><br>
+              <strong>Illustration (short lease)</strong>
+              A lets a room to B for 11 months. A and B can do this orally, as long as A hands over possession of the room.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 105 — lease defined</span>
+              <span class="rw-link">S. 4 — Registration Act (supplemental)</span>
+              <span class="rw-link">Indian Registration Act, 1908</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 108</span></td>
+          <td class="col-name">
+            <div class="sec-name">Rights and liabilities of lessor and lessee.</div>
+            <div><span class="tag tag-key">KEY SECTION</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Mutual duties of lessor and lessee</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Lessor's duties (A):</strong></li>
+              <li>(a) Disclose material defects in property (known to lessor, not to lessee, not discoverable with ordinary care)</li>
+              <li>(b) Put lessee in possession on request</li>
+              <li>(c) Covenant of quiet enjoyment — if lessee pays rent and performs obligations, lessee may hold undisturbed for the term</li>
+              <li><strong>Lessee's rights (B):</strong></li>
+              <li>(d) Accessions to property are part of the lease</li>
+              <li>(e) If material part wholly destroyed or permanently unfit by fire/tempest/flood/irresistible force → lessee may void the lease (not if lessee's fault)</li>
+              <li>(f) Lessee may make repairs neglected by lessor and deduct cost + interest from rent, or recover from lessor</li>
+              <li>(g) Lessee may make payments neglected by lessor and deduct from rent</li>
+              <li>(h) Lessee may remove fixtures at any time while in possession (leaving property in received state)</li>
+              <li>(i) On lease of uncertain duration: lessee/legal rep entitled to growing crops and free ingress/egress on determination</li>
+              <li>(j) Lessee may sub-lease or transfer interest; but lessee remains liable under the lease</li>
+              <li><strong>Lessee's duties:</strong></li>
+              <li>(k) Disclose facts materially increasing the value of the interest being taken</li>
+              <li>(l) Pay premium or rent at proper time and place</li>
+              <li>(m) Keep and restore property in same condition (normal wear and tear excepted); allow lessor to inspect; repair defects caused by lessee within 3 months of notice</li>
+              <li>(n) Give notice if proceedings are brought to recover property or encroachments made</li>
+              <li>(o) Use property as prudent owner; not use for purpose other than leased; not fell/sell timber; not pull down buildings; not open new mines/quarries; not commit permanently injurious acts</li>
+              <li>(p) No permanent structure without lessor's consent (except for agriculture)</li>
+              <li>(q) On determination, put lessor back in possession</li>
+              <li>All these are subject to contrary contract or local usage</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">S.108 is the core of lease law — a comprehensive list of what each party owes the other. The lessor must hand over the property fit for use and not disturb quiet enjoyment. The lessee must pay rent, maintain the property, use it properly, and return it at the end. Sub-letting is allowed unless the lease restricts it.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration (clause e)</strong>
+              A lets a shop to B. A flood destroys 70% of the structure. B can treat the lease as void and leave, paying rent only until the flood date.<br><br>
+              <strong>Illustration (clause f)</strong>
+              The roof leaks. A (lessor) ignores B's notice for 2 months. B gets the roof fixed for Rs.20,000 and deducts it (with interest) from the next month's rent.<br><br>
+              <strong>Illustration (clause j)</strong>
+              B sub-lets the shop to C. B remains liable to A for rent — B cannot "escape" the lease by sub-letting.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 55 — buyer/seller rights (compare)</span>
+              <span class="rw-link">S. 111 — determination of lease</span>
+              <span class="rw-link">S. 114 — relief against forfeiture</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 109</span></td>
+          <td class="col-name">
+            <div class="sec-name">Rights of lessor's transferee.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">New owner of property steps into lessor's shoes</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Lessor transfers the leased property (or part/interest therein)</li>
+              <li>Transferee has all rights and (if lessee elects) all liabilities of the lessor as to that transferred portion</li>
+              <li>Lessor is not released from liabilities just because of transfer — unless lessee elects to treat transferee as liable</li>
+              <li>Transferee NOT entitled to <strong>arrears of rent due before</strong> the transfer</li>
+              <li>If lessee pays rent to old lessor without knowing of transfer → not liable to pay again to transferee</li>
+              <li>Parties may agree on apportionment of rent/premium; if they disagree, court determines</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">When the landlord sells the property, the tenant's lease continues — the new owner is bound by the lease as much as the old owner was. The tenant is protected: they do not have to re-negotiate, and rent paid to the old landlord in good faith (before knowing of the sale) is valid.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A has leased his house to B for 2 years. A sells the house to C. B's lease continues — C inherits the lease. B pays rent to A (not knowing of the sale) for the next month — B is not liable to pay again to C.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 108(c) — quiet enjoyment (continues with new lessor)</span>
+              <span class="rw-link">S. 50 — bona fide rent payment (analogous)</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 110</span></td>
+          <td class="col-name">
+            <div class="sec-name">Exclusion of day on which term commences. Duration of lease for a year. Option to determine lease.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Computation of lease period; option to terminate</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>If lease commences from a particular day → that day is <strong>excluded</strong> in computing the term</li>
+              <li>If no day named → lease begins from the day it is made</li>
+              <li><strong>Lease for "a year"</strong> → lasts the whole anniversary of the commencement day (unless contrary agreement)</li>
+              <li>If lease is expressed terminable before expiry but <strong>does not say at whose option</strong> → option belongs to <strong>lessee</strong> (not lessor)</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Technical rules for counting lease periods. The start day is not counted. If the lease says "1 year" without fixing the end date, it ends on the day before the same calendar date next year. If an early termination clause exists but doesn't say who gets the option, the lessee gets it — the lessee is the more vulnerable party and needs the protection.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              Lease from 1 January for 1 year: the year is counted from 2 January, ending on 1 January of the next year (the full anniversary). If the lease says "may be ended before the term" without specifying who may do so — only the lessee can exercise that option.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 105 — lease defined</span>
+              <span class="rw-link">S. 111 — how leases end</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 111</span></td>
+          <td class="col-name">
+            <div class="sec-name">Determination of lease.</div>
+            <div><span class="tag tag-key">KEY SECTION</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">8 ways a lease can end</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>(a) Efflux of time</strong> — the period expires</li>
+              <li><strong>(b) Limiting event</strong> — the event conditioning the term happens</li>
+              <li><strong>(c) Lessor's interest terminates</strong> — lessor's own right to the property ends</li>
+              <li><strong>(d) Merger</strong> — lessee and lessor interests vest in one person in the same right</li>
+              <li><strong>(e) Express surrender</strong> — lessee yields up interest to lessor by mutual agreement</li>
+              <li><strong>(f) Implied surrender</strong> — e.g. lessee accepts a new lease from lessor during continuance of old lease</li>
+              <li><strong>(g) Forfeiture</strong> — (1) breach of express condition allowing re-entry; (2) lessee renounces character as lessee (claims title in self or third party); (3) lessee adjudicated insolvent (if lease so provides) — <em>in all cases: lessor gives written notice of intention to determine</em></li>
+              <li><strong>(h) Expiration of notice to quit</strong> — valid notice to determine/quit expires</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">There are exactly 8 ways a lease ends — memorise them. Forfeiture (clause g) is the most litigated. Written notice is always required for forfeiture. Merger happens when the tenant buys the landlord's property — you cannot be both landlord and tenant of the same property in the same capacity.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration (forfeiture — clause g)</strong>
+              A lets to B with condition: if B sub-lets without consent, A may re-enter. B sub-lets to C without consent. A gives B a written notice of intention to forfeit. The lease is forfeited.<br><br>
+              <strong>Illustration (implied surrender — clause f)</strong>
+              During a 5-year lease, lessee B accepts a fresh 3-year lease from lessor A for the same property. The original lease is impliedly surrendered from the moment the new lease begins.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 112 — waiver of forfeiture</span>
+              <span class="rw-link">S. 113 — waiver of notice to quit</span>
+              <span class="rw-link">S. 114 — relief against forfeiture (non-payment)</span>
+              <span class="rw-link">S. 114A — relief against forfeiture (other cases)</span>
+              <span class="rw-link">S. 116 — holding over after determination</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 112</span></td>
+          <td class="col-name">
+            <div class="sec-name">Waiver of forfeiture.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Lessor waives forfeiture by accepting rent after it</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Forfeiture under S.111(g) is <strong>waived</strong> by:</li>
+              <li>Acceptance of rent which became due <em>after</em> the forfeiture (with lessor aware of it)</li>
+              <li>Distress for such rent</li>
+              <li>Any other act showing intention to treat lease as subsisting</li>
+              <li><strong>Proviso 1:</strong> Lessor must be <strong>aware</strong> of the forfeiture for waiver to operate</li>
+              <li><strong>Proviso 2:</strong> Accepting rent <em>after filing an ejectment suit</em> is <strong>NOT</strong> a waiver</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">A landlord who knows about a breach but still accepts the next month's rent is sending the message "I'm treating the lease as ongoing." The law takes that as a waiver — the forfeiture is gone. But once the landlord has filed a suit to evict, accepting rent is not a waiver (to prevent tenants from simply paying rent to defeat pending eviction suits).</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              B sub-lets without A's consent (breach of condition). A learns of this but accepts rent for the next 3 months without objection. A has waived the forfeiture — A cannot now evict B for that sub-letting. But if A had already filed an ejectment suit, accepting rent does not waive the forfeiture.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 111(g) — forfeiture</span>
+              <span class="rw-link">S. 113 — waiver of notice to quit</span>
+              <span class="rw-link">S. 114 — relief against forfeiture</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 113</span></td>
+          <td class="col-name">
+            <div class="sec-name">Waiver of notice to quit.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Notice to quit waived by acts showing lease subsists</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Notice under S.111(h) (notice to quit) is <strong>waived</strong> if:</li>
+              <li>With express/implied consent of the <em>person to whom it was given</em></li>
+              <li>The <em>person who gave</em> the notice does any act showing intention to treat lease as subsisting</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Just as forfeiture can be waived, a notice to quit can be waived. If after giving notice to quit, the notifying party acts inconsistently with the notice (like collecting rent or issuing a fresh notice), the original notice loses effect.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustrations (from Act)</strong>
+              (a) A gives B notice to quit. Notice expires. A accepts rent from B for the post-notice period. Notice is waived — A cannot evict on the basis of that notice.<br><br>
+              (b) A gives B notice to quit. Notice expires; B stays in possession. A gives B a <em>second</em> notice to quit. The first notice is waived.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 111(h) — notice to quit</span>
+              <span class="rw-link">S. 112 — waiver of forfeiture (analogous)</span>
+              <span class="rw-link">S. 116 — holding over</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 114</span></td>
+          <td class="col-name">
+            <div class="sec-name">Relief against forfeiture for non-payment of rent.</div>
+            <div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Court may relieve lessee from forfeiture for rent default</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Lease determined by <strong>forfeiture for non-payment of rent</strong></li>
+              <li>Lessor has filed a suit to eject lessee</li>
+              <li>At the hearing of the suit:</li>
+              <li>If lessee pays/tenders: all <strong>arrears of rent + interest + full costs</strong> of suit, OR gives sufficient security for payment within 15 days</li>
+              <li>Court <strong>may</strong> (in its discretion) pass an order relieving lessee against forfeiture</li>
+              <li>If relief granted: lessee holds the property as if forfeiture had never occurred</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">A tenant who has fallen behind on rent can "save" the lease by paying everything owed (including the landlord's legal costs) at the court hearing. The court has discretion — it is not automatic. The purpose is to give a genuine defaulter one last chance before losing the lease permanently.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              B (tenant) has not paid 4 months' rent to A. A forfeits the lease and sues for ejectment. At the hearing, B offers to pay all 4 months' rent + interest + A's court costs. The court exercises discretion and grants B relief — B continues the tenancy as if no forfeiture happened.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 111(g) — forfeiture</span>
+              <span class="rw-link">S. 114A — relief in other forfeiture cases</span>
+              <span class="rw-link">S. 112 — waiver of forfeiture</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 114A</span></td>
+          <td class="col-name">
+            <div class="sec-name">Relief against forfeiture in certain other cases.</div>
+            <div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Notice required before suing for forfeiture (non-rent breaches)</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Lease determined by forfeiture for <strong>breach of any express condition</strong> (other than non-payment of rent)</li>
+              <li>Before any ejectment suit: lessor must serve written notice on lessee:</li>
+              <li>(a) Specifying the <strong>particular breach</strong> complained of</li>
+              <li>(b) If breach is capable of remedy → requiring lessee to <strong>remedy it</strong></li>
+              <li>Lessee must fail to remedy within a <strong>reasonable time</strong> from notice</li>
+              <li>No suit lies until this notice procedure is followed</li>
+              <li><strong>Does NOT apply to</strong>: conditions against assignment/sub-letting/parting with possession; or forfeiture conditions related to non-payment of rent</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">A landlord cannot rush to court the moment a tenant breaks a lease condition (other than not paying rent). They must first give a written notice identifying the breach and (if it can be fixed) asking the tenant to fix it. Only if the tenant ignores this can the landlord sue. This gives the tenant a fair warning and a chance to cure the breach.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              B (tenant) is running a food stall in a flat leased for residential use — breach of the lease condition. A (lessor) must first send a written notice to B specifying the breach (running a stall) and asking B to stop. If B continues after a reasonable time, A can sue for ejectment. A cannot sue directly without the notice.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 111(g) — forfeiture</span>
+              <span class="rw-link">S. 114 — relief against forfeiture (rent)</span>
+              <span class="rw-link">S. 112 — waiver of forfeiture</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 115</span></td>
+          <td class="col-name">
+            <div class="sec-name">Effect of surrender and forfeiture on under-leases.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">How head lease ending affects sub-leases</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Surrender of head lease</strong> → does NOT prejudice an under-lease previously granted on substantially same terms (except rent amount); rent payable by and contracts binding on under-lessee now go to/are enforceable by the <strong>head lessor</strong> (unless surrender was to get a new lease)</li>
+              <li><strong>Forfeiture of head lease</strong> → annuls all under-leases</li>
+              <li><strong>Exception to forfeiture annulling</strong>: forfeiture procured by lessor in <strong>fraud of under-lessees</strong>, OR where relief against forfeiture is granted under S.114</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">When the main lease ends by surrender (consensually), sub-tenants are protected — the head landlord steps in as their landlord. When the main lease ends by forfeiture (breach), sub-tenants are normally wiped out — their derivative right fails with the main lease. Fraudulent forfeitures and S.114 relief protect innocent sub-tenants.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration (surrender)</strong>
+              A is head lessor; B is lessee; C is B's sub-lessee. B surrenders the lease to A. C's sub-lease continues — but now C pays rent to A directly.<br><br>
+              <strong>Illustration (forfeiture)</strong>
+              B's lease is forfeited for sub-letting without consent. C (sub-lessee) loses the sub-lease too — unless the court grants B (and by extension C) relief under S.114.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 111(e)(f)(g) — determination modes</span>
+              <span class="rw-link">S. 114 — relief against forfeiture</span>
+              <span class="rw-link">S. 108(j) — sub-leasing right</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="key doctrine">
+          <td class="col-sec"><span class="sec-badge">S. 116</span></td>
+          <td class="col-name">
+            <div class="sec-name">Effect of holding over.</div>
+            <div><span class="tag tag-doctrine">HOLDING OVER</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Lease renewed by holding over with landlord's assent</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Lessee (or under-lessee) remains in possession <strong>after determination</strong> of the lease</li>
+              <li>Lessor or legal representative <strong>accepts rent</strong> from lessee/under-lessee OR <strong>otherwise assents</strong> to continuing possession</li>
+              <li>Effect: lease is <strong>renewed</strong> — in absence of contrary agreement:</li>
+              <li>If leased for agricultural purposes → renewed <strong>year to year</strong></li>
+              <li>If leased for any other purpose → renewed <strong>month to month</strong></li>
+              <li>(As per S.106)</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">When a lease ends but the tenant stays and the landlord does not object (or accepts rent), the law implies a fresh lease. This "holding over" lease operates on the same terms as the original (S.106 rates), but there is no new long-term commitment — either party can end it with proper notice.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustrations (from Act)</strong>
+              (a) A lets a house to B for 5 years. B sub-lets to C at Rs.100/month. The 5 years expire but C stays and pays rent to A. C's lease is renewed month to month.<br><br>
+              (b) A lets a farm to B for the life of C. C dies but B stays with A's assent. B's lease is renewed year to year.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 106 — implied duration and notice</span>
+              <span class="rw-link">S. 111 — determination of lease</span>
+              <span class="rw-link">S. 113 — waiver of notice to quit</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch5" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 117</span></td>
+          <td class="col-name">
+            <div class="sec-name">Exemption of leases for agricultural purposes.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Agricultural leases exempted from Chapter V</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>None of the provisions of Chapter V apply to agricultural leases</li>
+              <li><strong>Exception:</strong> State Government may, by notification in the Official Gazette, declare any or all provisions applicable to agricultural leases (with or subject to local law)</li>
+              <li>Such notification does not take effect until <strong>6 months</strong> from publication</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Agricultural leases are largely governed by state-specific rent and tenancy laws (Tenancy Acts, Land Reforms Acts), not Chapter V of TPA. This section carves them out. However, a State Government can opt in to apply Chapter V provisions if it chooses.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              In Madhya Pradesh, agricultural tenancy is governed by the MP Land Revenue Code and tenancy legislation — not by S.106 or S.108 of TPA. Chapter V of TPA has been largely excluded by state law in this area.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 106 — excluded from agricultural leases (unless notified)</span>
+              <span class="rw-link">State tenancy/rent control legislation</span>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ CHAPTER VI — EXCHANGES -->
+<div class="chapter-group ch6" id="grp-ch6">
+  <div class="chapter-header" onclick="toggleChapter('ch6')">
+    <span class="ch-roman">CHAPTER VI</span>
+    <span class="ch-title">Of Exchanges</span>
+    <span class="ch-sections">Sections 118–121</span>
+    <span class="ch-toggle" id="tog-ch6">▼</span>
+  </div>
+  <div class="table-wrap" id="body-ch6">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-sec">Section</th>
+          <th class="col-name">Section Name (Bare Act)</th>
+          <th class="col-concept">Concept</th>
+          <th class="col-ingr">Ingredients / Requirements</th>
+          <th class="col-expl">Simple Explanation</th>
+          <th class="col-illus">Illustration</th>
+          <th class="col-read">Read With</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr data-ch="ch6" data-tags="key def">
+          <td class="col-sec"><span class="sec-badge">S. 118</span></td>
+          <td class="col-name">
+            <div class="sec-name">"Exchange" defined.</div>
+            <div><span class="tag tag-def">DEFINITION</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Exchange — mutual transfer of ownership</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Exchange</strong> = when two persons mutually transfer the ownership of one thing for the ownership of another</li>
+              <li>Neither thing being money only, OR both things being money only</li>
+              <li>Transfer in completion of exchange = same manner as a <strong>sale</strong></li>
+            </ul>
+          </td>
+          <td class="col-expl expl">An exchange is a barter of ownership — both parties simultaneously give and receive. It is not a sale because the consideration is property, not (purely) money. Important rule: if both things are money, it is also an exchange (currency swap). Transfer formalities follow the same rules as sale — so exchange of immoveable property ≥ Rs.100 needs a registered instrument.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A gives B his flat in Indore; B gives A his plot in Bhopal. This is an exchange — both transfer ownership of immoveable property. Since both properties are over Rs.100, registered instruments are needed, as in a sale.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 54 — sale (mode of transfer applies)</span>
+              <span class="rw-link">S. 119 — right on deprivation</span>
+              <span class="rw-link">S. 120 — buyer/seller rights apply</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch6" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 119</span></td>
+          <td class="col-name">
+            <div class="sec-name">Right of party deprived of thing received in exchange.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Remedy for defective title in exchange</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Party to exchange (or person claiming through them) is deprived of the thing received</li>
+              <li>Due to a <strong>defect in title</strong> of the other party</li>
+              <li>Unless contrary intention appears from terms of exchange:</li>
+              <li>Other party is liable for <strong>loss caused</strong>, OR</li>
+              <li>At deprived party's option: <strong>return of the thing transferred</strong> (if still in possession of the other party or their legal rep or gratuitous transferee)</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">In a barter, both parties must have good title to what they give. If the title turns out to be defective and you lose what you received, the other party must either compensate you for the loss OR (at your choice) give back what you gave them. This mirrors the implied warranty of title in a sale.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A gives B his plot; B gives A his car. It turns out B never owned the car — A is dispossessed by the real owner. A may sue B for damages, OR (since B still has the plot) require B to return the plot to A.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 55(2) — seller's warranty of title (analogous)</span>
+              <span class="rw-link">S. 120 — rights of parties</span>
+              <span class="rw-link">S. 118 — exchange defined</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch6" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 120</span></td>
+          <td class="col-name">
+            <div class="sec-name">Rights and liabilities of parties.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Each party is simultaneously buyer and seller</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Save as otherwise provided in Chapter VI:</li>
+              <li>Each party has the <strong>rights of a seller</strong> as to what they give</li>
+              <li>Each party has the <strong>liabilities of a seller</strong> as to what they give</li>
+              <li>Each party has the <strong>rights of a buyer</strong> as to what they take</li>
+              <li>Each party has the <strong>liabilities of a buyer</strong> as to what they take</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">In a single transaction, each party wears two hats — they are a seller of what they give and a buyer of what they receive. All the rights and duties of Chapter III (sales) apply to each party in both capacities. This makes the law of exchange lean heavily on the law of sale.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A and B exchange properties. A must disclose defects in the property he gives (like a seller under S.55). B must disclose facts increasing the value of A's interest (like a buyer under S.55(5)(a)). Both have mutual disclosure obligations.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 55 — rights/liabilities of buyer and seller</span>
+              <span class="rw-link">S. 118 — exchange defined</span>
+              <span class="rw-link">S. 119 — remedy for defective title</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch6" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 121</span></td>
+          <td class="col-name">
+            <div class="sec-name">Exchange of money.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Each party warrants genuineness of money given</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>On an exchange of money (e.g. currency exchange or coin for coin)</li>
+              <li>Each party <strong>warrants the genuineness</strong> of the money given by them</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">When people exchange money (coins, currency notes), each person implicitly guarantees that what they are giving is genuine legal tender — not counterfeit. If you hand over a fake note in a currency exchange, you breach this warranty.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A exchanges Rs.1,000 in old notes for Rs.1,000 in new notes with B. If A's notes are counterfeit, A is in breach of the implied warranty under S.121 — B can claim against A.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 118 — exchange defined</span>
+              <span class="rw-link">S. 120 — buyer/seller rights apply</span>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ CHAPTER VII — GIFTS -->
+<div class="chapter-group ch7" id="grp-ch7">
+  <div class="chapter-header" onclick="toggleChapter('ch7')">
+    <span class="ch-roman">CHAPTER VII</span>
+    <span class="ch-title">Of Gifts</span>
+    <span class="ch-sections">Sections 122–129</span>
+    <span class="ch-toggle" id="tog-ch7">▼</span>
+  </div>
+  <div class="table-wrap" id="body-ch7">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-sec">Section</th>
+          <th class="col-name">Section Name (Bare Act)</th>
+          <th class="col-concept">Concept</th>
+          <th class="col-ingr">Ingredients / Requirements</th>
+          <th class="col-expl">Simple Explanation</th>
+          <th class="col-illus">Illustration</th>
+          <th class="col-read">Read With</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr data-ch="ch7" data-tags="key def">
+          <td class="col-sec"><span class="sec-badge">S. 122</span></td>
+          <td class="col-name">
+            <div class="sec-name">"Gift" defined. Acceptance when to be made.</div>
+            <div><span class="tag tag-def">DEFINITION</span></div><div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Gift — voluntary transfer without consideration</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Gift</strong> = transfer of certain <strong>existing</strong> moveable or immoveable property</li>
+              <li>Made <strong>voluntarily</strong></li>
+              <li><strong>Without consideration</strong></li>
+              <li>By donor to donee</li>
+              <li><strong>Accepted</strong> by or on behalf of donee</li>
+              <li>Acceptance must be made <strong>during the donor's lifetime</strong> while donor is still capable of giving</li>
+              <li>If donee dies before acceptance → gift is <strong>void</strong></li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Four essentials: (1) voluntary, (2) without consideration, (3) existing property, (4) accepted. Acceptance is critical — an unaccepted gift is not complete. The acceptance must happen while the donor is alive and mentally capable. If the donee dies before accepting, the gift fails entirely. A gift of future property is void under S.124.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A offers to gift his house to B. B is abroad. A's agent communicates the offer; B accepts by letter while A is alive. Valid gift — acceptance during donor's lifetime.<br><br>
+              A gifts to B. B dies the next day before accepting. Gift is void — donee died before acceptance.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 123 — how gifts are made</span>
+              <span class="rw-link">S. 124 — existing property only</span>
+              <span class="rw-link">S. 126 — revocation of gift</span>
+              <span class="rw-link">S. 129 — Muhammadan law / donatio mortis causa</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch7" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 123</span></td>
+          <td class="col-name">
+            <div class="sec-name">Transfer how effected.</div>
+            <div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Mode of making a gift — registration vs delivery</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Immoveable property:</strong></li>
+              <li>Transfer must be by a <strong>registered instrument</strong></li>
+              <li>Signed by or on behalf of the donor</li>
+              <li>Attested by at least <strong>two witnesses</strong></li>
+              <li><strong>Moveable property:</strong></li>
+              <li>Transfer may be by a registered instrument signed as above, OR</li>
+              <li>By <strong>delivery</strong> of the property</li>
+              <li>Delivery = same manner as delivery of goods sold</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Unlike a sale (where consideration matters), a gift of immoveable property <em>always</em> requires registration, regardless of value. For moveable property, you can simply hand it over. No deed needed for gifting a book or a car — just give it. But gifting a house needs a registered, witnessed deed.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration (immoveable)</strong>
+              A wants to gift his plot to B. A must execute a deed of gift, signed by A, attested by 2 witnesses, and registered at the Sub-Registrar's office. Without registration, the gift is invalid.<br><br>
+              <strong>Illustration (moveable)</strong>
+              A gifts B his laptop by handing it over. Valid gift by delivery — no writing required.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 122 — gift defined</span>
+              <span class="rw-link">S. 3 — attested defined</span>
+              <span class="rw-link">Indian Registration Act, 1908</span>
+              <span class="rw-link">S. 54 — compare: sale of immoveable property</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch7" data-tags="void">
+          <td class="col-sec"><span class="sec-badge">S. 124</span></td>
+          <td class="col-name">
+            <div class="sec-name">Gift of existing and future property.</div>
+            <div><span class="tag tag-void">VOID (future property)</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Gift of future property is void</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Gift comprising <strong>both existing and future property</strong>:</li>
+              <li>Valid as to <strong>existing property</strong></li>
+              <li><strong>Void</strong> as to <strong>future property</strong></li>
+            </ul>
+          </td>
+          <td class="col-expl expl">You can only gift what you currently own. You cannot gift something you expect to own in the future — it doesn't exist as your property yet. If a single gift document covers both existing and future property, it is severed: the existing portion stands; the future portion fails. This aligns with S.5 (only a living person can transfer existing property).</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A gifts B: (1) his car (currently owned) — valid; AND (2) the bonus A expects to receive next month — void (future property). B gets the car but not the bonus claim.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 122 — gift must be of existing property</span>
+              <span class="rw-link">S. 5 — transfer by living person</span>
+              <span class="rw-link">S. 6(a) — spes successionis cannot be transferred</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch7" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 125</span></td>
+          <td class="col-name">
+            <div class="sec-name">Gift to several, of whom one does not accept.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Non-acceptance by one donee affects only their share</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Gift to two or more donees</li>
+              <li>One of them does not accept</li>
+              <li>Gift is void only as to the <strong>interest that non-accepting donee would have taken</strong></li>
+              <li>The rest of the gift stands</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">A gift to multiple people is not an all-or-nothing affair. If one of three recipients refuses to accept, only that person's share fails — the other two still get their shares. There is no "joint acceptance" requirement; each donee's acceptance is independent.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A gifts his property equally to B, C, and D. D refuses to accept. D's one-third share fails. B and C each get their one-third shares. (D's share does not go to B and C — it reverts to A or A's estate.)
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 122 — acceptance requirement</span>
+              <span class="rw-link">S. 127 — onerous gifts (compare: all-or-nothing)</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch7" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 126</span></td>
+          <td class="col-name">
+            <div class="sec-name">When gift may be suspended or revoked.</div>
+            <div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Revocation of gifts — limited circumstances only</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Gift may be <strong>suspended or revoked</strong> if parties agree: on happening of a specified event which <strong>does not depend on the donor's will</strong></li>
+              <li>Gift revocable <strong>wholly/partly at donor's mere will</strong> = <strong>void</strong> wholly/partly</li>
+              <li>Gift may also be revoked on grounds that would allow rescission of a <strong>contract</strong> (e.g. fraud, coercion, undue influence) — <em>except</em> want or failure of consideration (there is no consideration in a gift)</li>
+              <li><strong>Save as above</strong> → a gift cannot be revoked</li>
+              <li>Does not affect rights of transferees for consideration without notice</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Once a valid gift is complete, it is generally irrevocable. The only ways to revoke are: (1) the parties agreed at the time of the gift that a specific, external event would trigger revocation; (2) a contract-law ground like fraud or undue influence. A donor cannot simply change his mind and take the gift back — that would defeat the purpose of gifting. A "gift" revocable at will is treated as no gift at all.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustrations (from Act)</strong>
+              (a) A gifts a field to B, agreeing that if B and his descendants die before A, the field returns to A. B dies without descendants in A's lifetime → A may take back the field (valid revocation — event doesn't depend on A's will).<br><br>
+              (b) A gifts Rs.1 lakh to B, reserving right to take back Rs.10,000 "at pleasure." The gift is valid for Rs.90,000; the Rs.10,000 portion is void (revocable at donor's will = no gift).
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 122 — gift defined (must be voluntary)</span>
+              <span class="rw-link">S. 19 — vested interest not easily defeated</span>
+              <span class="rw-link">Indian Contract Act, S. 10–19 (rescission grounds)</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch7" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 127</span></td>
+          <td class="col-name">
+            <div class="sec-name">Onerous gifts. Onerous gift to disqualified person.</div>
+            <div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Gift with a burden — accept all or nothing (single transfer)</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Single transfer of several things</strong>: one is burdened by an obligation, others are not → donee must <strong>accept fully or get nothing</strong></li>
+              <li><strong>Two or more separate, independent transfers</strong> to same person → donee may <strong>accept one and refuse others</strong> even if some are onerous</li>
+              <li><strong>Onerous gift to disqualified person (minor etc.)</strong>: not bound by acceptance. But if, after becoming competent to contract and knowing of the obligation, they <strong>retain the property</strong> → become bound</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">A donor cannot force the donee to take a loss-making item by packaging it with a valuable one as a single gift. The donee must take the whole bundle or leave it all. But if two gifts are given as separate independent transactions, the donee can pick and choose. A minor who accepts an onerous gift is not bound until they grow up and knowingly keep it.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustrations (from Act)</strong>
+              (a) A gifts B all A's shares in Company X (profitable) and Company Y (with heavy calls due) — <em>one transfer</em>. B refuses the Company Y shares → B cannot take the X shares either.<br><br>
+              (b) A separately gifts B a leasehold (at a loss-making rent) AND (as a separate transaction) a sum of money. B refuses the leasehold → B does not forfeit the money.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 125 — non-acceptance by one donee</span>
+              <span class="rw-link">S. 128 — universal donee's liability</span>
+              <span class="rw-link">Indian Contract Act, S. 11 — minor's competence</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch7" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 128</span></td>
+          <td class="col-name">
+            <div class="sec-name">Universal donee.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Donee of entire property is personally liable for donor's debts</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Gift consists of the <strong>donor's whole property</strong></li>
+              <li>The donee ("universal donee") is <strong>personally liable</strong> for all debts due by and liabilities of the donor at the time of the gift</li>
+              <li>Liability is limited to the <strong>extent of the property</strong> comprised in the gift</li>
+              <li>Subject to S.127 (onerous gifts)</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">If someone gifts you everything they own, the creditors of the donor can still chase you for the debts — up to the value of what you received. You cannot accept the entire estate and disclaim the liabilities attached to it. This prevents a debtor from gifting all assets to a relative to evade creditors.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A (who owes Rs.5 lakh to various creditors) gifts his entire property (worth Rs.8 lakh) to B. B is personally liable to A's creditors for up to Rs.5 lakh from the gifted property. B cannot keep the whole Rs.8 lakh free of A's debts.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 127 — onerous gifts</span>
+              <span class="rw-link">S. 53 — fraudulent transfer (compare)</span>
+              <span class="rw-link">Indian Insolvency law</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch7" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 129</span></td>
+          <td class="col-name">
+            <div class="sec-name">Saving of donations mortis causa and Muhammadan law.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Chapter VII does not affect gifts in contemplation of death or Muslim law</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Chapter VII does NOT apply to:</li>
+              <li><strong>Donations mortis causa</strong> (gifts of moveable property made in contemplation of death)</li>
+              <li><strong>Rules of Muhammadan law</strong> relating to gifts</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">A deathbed gift (donatio mortis causa) — where a person gives something while believing they are about to die, conditional on their death — is governed separately (it revives/fails based on whether the person dies or survives). Muhammadan law has its own rules for gifts (hiba) which are not displaced by this Chapter.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration (donatio mortis causa)</strong>
+              A, seriously ill, gives B his gold watch saying "keep this if I die." A dies — B keeps the watch. A recovers — B must return it. This is a donatio mortis causa governed by common law principles, not S.122–128.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 122 — gift under Chapter VII</span>
+              <span class="rw-link">Muhammadan personal law (hiba)</span>
+              <span class="rw-link">S. 2 — saving of Muhammadan law generally</span>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ CHAPTER VIII — ACTIONABLE CLAIMS -->
+<div class="chapter-group ch8" id="grp-ch8">
+  <div class="chapter-header" onclick="toggleChapter('ch8')">
+    <span class="ch-roman">CHAPTER VIII</span>
+    <span class="ch-title">Of Transfers of Actionable Claims</span>
+    <span class="ch-sections">Sections 130–137</span>
+    <span class="ch-toggle" id="tog-ch8">▼</span>
+  </div>
+  <div class="table-wrap" id="body-ch8">
+    <table>
+      <thead>
+        <tr>
+          <th class="col-sec">Section</th>
+          <th class="col-name">Section Name (Bare Act)</th>
+          <th class="col-concept">Concept</th>
+          <th class="col-ingr">Ingredients / Requirements</th>
+          <th class="col-expl">Simple Explanation</th>
+          <th class="col-illus">Illustration</th>
+          <th class="col-read">Read With</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr data-ch="ch8" data-tags="key def">
+          <td class="col-sec"><span class="sec-badge">S. 130</span></td>
+          <td class="col-name">
+            <div class="sec-name">Transfer of actionable claim.</div>
+            <div><span class="tag tag-def">DEFINITION &amp; MODE</span></div><div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">How an actionable claim is transferred; effect</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Transfer of an actionable claim (with or without consideration)</li>
+              <li>Effected <strong>only</strong> by execution of an <strong>instrument in writing signed</strong> by the transferor or their duly authorised agent</li>
+              <li>Transfer is <strong>complete and effectual upon execution</strong> of the instrument — notice to debtor is NOT required for completion</li>
+              <li>On transfer: <strong>all rights and remedies</strong> of the transferor (damages or otherwise) vest in the transferee</li>
+              <li><strong>Proviso:</strong> any dealing by the debtor with the original creditor (transferor) remains valid against the transferee — unless the debtor is a party to the transfer OR has received <strong>express notice</strong> of the transfer (as per S.131)</li>
+              <li>Sub-section (2): Transferee may sue/institute proceedings <strong>in own name</strong> without transferor's consent</li>
+              <li><strong>Exception:</strong> Does not apply to marine or fire insurance policy transfers (see Insurance Act, 1938)</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">An actionable claim (e.g. a book debt) can be assigned to another person simply by a signed written instrument. The assignment is immediately effective. The transferee can sue the debtor directly in their own name. However, if the debtor doesn't know about the assignment and pays the original creditor, that payment is valid — it protects honest debtors. Once the debtor has express notice, they must pay only the transferee.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustrations (from Act)</strong>
+              (i) A owes money to B. B assigns the debt to C by writing. B then demands payment from A, who (not having received notice of assignment) pays B. This payment is valid — C cannot sue A for the same debt again.<br><br>
+              (ii) A assigns a life insurance policy to Bank B as security for a loan. A dies. Bank B can sue the insurance company directly without involving A's executor — subject to the proviso in S.130(1).
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 3 — actionable claim defined</span>
+              <span class="rw-link">S. 131 — notice to be in writing</span>
+              <span class="rw-link">S. 132 — transferee takes subject to equities</span>
+              <span class="rw-link">S. 137 — negotiable instruments excluded</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 130A</span></td>
+          <td class="col-name">
+            <div class="sec-name">[Transfer of policy of marine insurance] — Repealed.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Repealed section</span></td>
+          <td class="col-ingr">
+            <div class="repealed">Repealed by the Marine Insurance Act, 1963 (Act 11 of 1963), S.92, with effect from 1 August 1963. Marine insurance policy transfers are now governed entirely by the Marine Insurance Act, 1963.</div>
+          </td>
+          <td class="col-expl expl"><span class="repealed">Refer to Marine Insurance Act, 1963 for transfer of marine insurance policies.</span></td>
+          <td class="col-illus">
+            <div class="illus"><span class="repealed">Refer to Marine Insurance Act, 1963.</span></div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">Marine Insurance Act, 1963</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 131</span></td>
+          <td class="col-name">
+            <div class="sec-name">Notice to be in writing, signed.</div>
+            <div><span class="tag tag-key">KEY</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Notice of assignment must be written and signed</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Every notice of transfer of an actionable claim must be:</li>
+              <li><strong>In writing</strong></li>
+              <li>Signed by the <strong>transferor</strong> or their authorised agent, OR if transferor refuses to sign — by the <strong>transferee</strong> or their agent</li>
+              <li>Must state the <strong>name and address of the transferee</strong></li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Although the assignment itself is complete without notice (S.130), notice to the debtor has important consequences: once given, the debtor can no longer validly pay the original creditor. The notice must be in writing and signed — oral notice is not enough for this purpose. It must identify the new creditor clearly.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              B assigns A's debt to C. C sends a written notice to A saying "B has assigned the debt to C [C's address] — please pay all future instalments to C." This is a valid notice. A must now pay C. If A pays B after receiving this notice, A is still liable to C.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 130 — transfer complete without notice, but notice protects transferee</span>
+              <span class="rw-link">S. 132 — equities (notice affects defences available)</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="key doctrine">
+          <td class="col-sec"><span class="sec-badge">S. 132</span></td>
+          <td class="col-name">
+            <div class="sec-name">Liability of transferee of actionable claim.</div>
+            <div><span class="tag tag-doctrine">SUBJECT TO EQUITIES</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Transferee takes claim subject to all defences debtor had against transferor</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Transferee of an actionable claim takes it subject to <strong>all liabilities and equities</strong> to which the transferor was subject at the date of transfer</li>
+              <li>This applies regardless of whether the transferee was aware of them</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">An assignee of a debt cannot get a better claim than the assignor had. If the debtor had valid defences or set-offs against the original creditor (e.g. the creditor also owed them money), those defences are fully available against the new holder too. You cannot "launder" a defective claim by assigning it to an innocent third party.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustrations (from Act)</strong>
+              (i) A transfers B's debt to C. A is also indebted to B. C sues B for the debt. B can set off A's debt to B against C's claim — even though C was unaware of the set-off.<br><br>
+              (ii) A executes a bond to B under circumstances entitling A to have it cancelled. B assigns bond to C (for value, without notice). C cannot enforce the bond against A — A's equity survives.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 130 — transfer of actionable claim</span>
+              <span class="rw-link">S. 131 — notice</span>
+              <span class="rw-link">S. 133 — warranty of solvency</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 133</span></td>
+          <td class="col-name">
+            <div class="sec-name">Warranty of solvency of debtor.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Transferor's warranty of debtor's solvency is limited</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Where the transferor of a debt <strong>warrants the solvency of the debtor</strong></li>
+              <li>Unless contrary contract: warranty applies only to the debtor's solvency <strong>at the time of the transfer</strong> (not future solvency)</li>
+              <li>Where transfer is for consideration: warranty is limited to the <strong>amount or value of such consideration</strong></li>
+            </ul>
+          </td>
+          <td class="col-expl expl">When selling a debt, the seller can only guarantee that the debtor was solvent at the time of the sale. If the debtor goes bankrupt afterwards, the seller is not responsible. The seller is also only liable up to whatever price they received for the debt — not the full face value of the debt.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              B sells to C a Rs.1 lakh debt owed by A, warranting A's solvency, for Rs.80,000. At the time of sale, A is solvent. A becomes bankrupt one month later. B's warranty covers only A's solvency at the date of transfer — B is not liable for A's subsequent bankruptcy. B's liability under the warranty is also capped at Rs.80,000 (the consideration received).
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 130 — transfer of actionable claim</span>
+              <span class="rw-link">S. 132 — equities</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 134</span></td>
+          <td class="col-name">
+            <div class="sec-name">Mortgaged debt.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Debt transferred as security — proceeds applied in order</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Debt is transferred <strong>for the purpose of securing an existing or future debt</strong></li>
+              <li>The transferred debt, when received by transferor or recovered by transferee, is applied in this order:</li>
+              <li><strong>First:</strong> costs of recovery</li>
+              <li><strong>Second:</strong> satisfaction of the amount secured by the transfer</li>
+              <li><strong>Residue:</strong> belongs to the transferor or person entitled to receive it</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">When a book debt is pledged as security for another loan (rather than sold outright), any money recovered from that debt goes first to cover recovery costs, then to repay the secured loan, and only then does the original holder get the surplus. This ensures the secured creditor is paid before the debtor-in-chief.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A is owed Rs.1 lakh by X. A borrows Rs.70,000 from B and transfers the Rs.1 lakh debt to B as security. B recovers Rs.1 lakh from X. B applies: Rs.5,000 (recovery costs) → Rs.70,000 (A's debt to B) → Rs.25,000 surplus returned to A.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 130 — transfer of actionable claim</span>
+              <span class="rw-link">S. 58 — mortgage (analogous security concept)</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 135</span></td>
+          <td class="col-name">
+            <div class="sec-name">Assignment of rights under policy of insurance against fire.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Assignee of fire insurance policy gets full rights of suit</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Assignee of a fire insurance policy — by endorsement or other writing</li>
+              <li>In whom the <strong>property in the subject insured</strong> is absolutely vested at the date of assignment</li>
+              <li>All rights of suit under the policy transfer and vest in the assignee — as if the insurance contract was made with the assignee directly</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">When a house is sold and the seller assigns the fire insurance policy to the buyer, the buyer can sue the insurance company directly in their own name if there is a claim. The assignment gives the buyer the same contractual standing as if they had originally taken out the policy.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A sells a factory to B and assigns the fire insurance policy to B. The factory then burns down. B can directly sue the insurance company for the claim — B does not need A's involvement because the policy was properly assigned when the property was absolutely transferred to B.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 130 — transfer of actionable claim</span>
+              <span class="rw-link">S. 49 — transferee's right under fire insurance policy (Ch. II, compare)</span>
+              <span class="rw-link">Insurance Act, 1938 (S. 38)</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="">
+          <td class="col-sec"><span class="sec-badge">S. 135A</span></td>
+          <td class="col-name">
+            <div class="sec-name">[Assignment of rights under policy of marine insurance] — Repealed.</div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Repealed section</span></td>
+          <td class="col-ingr">
+            <div class="repealed">Inserted by Act 6 of 1944, S.4. Repealed by the Marine Insurance Act, 1963 (Act 11 of 1963), S.92, with effect from 1 August 1963. Marine insurance policy assignments are now governed by the Marine Insurance Act, 1963.</div>
+          </td>
+          <td class="col-expl expl"><span class="repealed">Refer to Marine Insurance Act, 1963 for assignment of marine insurance policy rights.</span></td>
+          <td class="col-illus">
+            <div class="illus"><span class="repealed">Refer to Marine Insurance Act, 1963.</span></div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">Marine Insurance Act, 1963</span>
+              <span class="rw-link">S. 135 — fire insurance (operative provision)</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 136</span></td>
+          <td class="col-name">
+            <div class="sec-name">Incapacity of officers connected with Courts of Justice.</div>
+            <div><span class="tag tag-key">PROHIBITION</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Court officers barred from trafficking in actionable claims</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li><strong>Persons prohibited:</strong> Judges, legal practitioners, officers connected with any Court of Justice</li>
+              <li><strong>Prohibited acts:</strong> buying or trafficking in, stipulating for, or agreeing to receive any share of or interest in any actionable claim</li>
+              <li><strong>Consequence:</strong> No Court of Justice shall enforce, at the instance of such a person (or a person claiming through them), any actionable claim so dealt with</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Those connected with courts (judges, lawyers, officers) cannot speculate in or profit from legal claims. This prevents conflicts of interest and abuse of inside knowledge. If a lawyer buys a debt claim to then litigate it for profit, the courts will not enforce that claim for them — even if the claim itself is valid.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              X, a court officer, purchases B's outstanding debt claim against C at a discount, hoping to sue C in the court X works in. X cannot enforce this claim — S.136 prohibits court officers from trafficking in actionable claims, and courts will not hear the suit at X's instance.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">S. 130 — transfer of actionable claim</span>
+              <span class="rw-link">Bar Council of India Rules (professional conduct)</span>
+            </div>
+          </td>
+        </tr>
+
+        <tr data-ch="ch8" data-tags="key">
+          <td class="col-sec"><span class="sec-badge">S. 137</span></td>
+          <td class="col-name">
+            <div class="sec-name">Saving of negotiable instruments, etc.</div>
+            <div><span class="tag tag-key">EXCLUSION</span></div>
+          </td>
+          <td class="col-concept"><span class="concept-text">Chapter VIII does not apply to negotiable instruments and mercantile documents</span></td>
+          <td class="col-ingr">
+            <ul class="ingr-list">
+              <li>Chapter VIII provisions do <strong>NOT apply</strong> to:</li>
+              <li><strong>Stocks, shares or debentures</strong></li>
+              <li><strong>Instruments which are by law or custom negotiable</strong> (e.g. bills of exchange, promissory notes, cheques)</li>
+              <li><strong>Any mercantile document of title to goods</strong></li>
+              <li><strong>"Mercantile document of title to goods"</strong> includes: bill of lading, dock-warrant, warehouse-keeper's certificate, railway receipt, warrant or order for delivery of goods, and any document used in ordinary business as proof of possession/control of goods or authorising transfer of goods by endorsement or delivery</li>
+            </ul>
+          </td>
+          <td class="col-expl expl">Negotiable instruments (cheques, promissory notes) and documents of title to goods operate on their own law — the Negotiable Instruments Act, 1881 and customs of trade. These instruments can be freely transferred by endorsement and delivery, with a holder in due course getting a clean title free from prior defects. Chapter VIII (with its "subject to equities" rule in S.132) would cripple the commercial free flow of negotiable instruments. Hence they are carved out entirely.</td>
+          <td class="col-illus">
+            <div class="illus">
+              <strong>Illustration</strong>
+              A endorses a promissory note to B, who endorses it to C. C is a holder in due course. Under the Negotiable Instruments Act, C gets good title even if there were defects in the original transaction between A and B. S.132 (equities rule) does NOT apply — C is not "subject to equities" the way a mere assignee of an actionable claim would be.
+            </div>
+          </td>
+          <td class="col-read">
+            <div class="read-with">
+              <span class="rw-link">Negotiable Instruments Act, 1881</span>
+              <span class="rw-link">S. 132 — equities rule (does not apply to negotiable instruments)</span>
+              <span class="rw-link">S. 130 — transfer of actionable claim (not applicable here)</span>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="no-results" id="noResults">No sections match your search or filter.</div>
+
+<footer>
+  TRANSFER OF PROPERTY ACT, 1882 · ACT NO. 4 OF 1882 · CHAPTERS V–VIII · SECTIONS 105–137 · ALL SECTIONS COVERED INCLUDING REPEALED ONES · SOURCE: BARE ACT TEXT
+</footer>
+
+<script>
+let currentFilter = 'all';
+
+function toggleChapter(ch) {
+  const body = document.getElementById('body-' + ch);
+  const tog  = document.getElementById('tog-'  + ch);
+  if (!body) return;
+  if (body.style.display === 'none') {
+    body.style.display = '';
+    tog.textContent = '▼';
+  } else {
+    body.style.display = 'none';
+    tog.textContent = '▶';
+  }
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterTable();
+}
+
+function filterTable() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const rows  = document.querySelectorAll('tbody tr');
+  let visible = 0;
+  const chaptersWithVisible = new Set();
+
+  rows.forEach(row => {
+    const ch   = row.dataset.ch   || '';
+    const tags = (row.dataset.tags || '').split(' ');
+    const text = row.textContent.toLowerCase();
+
+    const chMatch =
+      currentFilter === 'all'      ||
+      currentFilter === ch         ||
+      (currentFilter === 'key'     && tags.includes('key'))     ||
+      (currentFilter === 'void'    && tags.includes('void'))    ||
+      (currentFilter === 'doctrine'&& tags.includes('doctrine'));
+
+    const searchMatch = !query || text.includes(query);
+
+    if (chMatch && searchMatch) {
+      row.classList.remove('hidden');
+      visible++;
+      chaptersWithVisible.add(ch);
+    } else {
+      row.classList.add('hidden');
+    }
+  });
+
+  // Show/hide chapter bodies based on whether they have visible rows
+  ['ch5','ch6','ch7','ch8'].forEach(ch => {
+    const body = document.getElementById('body-' + ch);
+    const tog  = document.getElementById('tog-'  + ch);
+    if (!body) return;
+    if (chaptersWithVisible.has(ch)) {
+      body.style.display = '';
+      if (tog) tog.textContent = '▼';
+    }
+  });
+
+  document.getElementById('countLabel').textContent =
+    visible + ' section' + (visible !== 1 ? 's' : '') + ' shown';
+  document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
+}
+
+window.onload = () => filterTable();
+</script>
+</body>
+</html>
